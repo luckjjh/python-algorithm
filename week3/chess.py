@@ -10,7 +10,7 @@ def Input_Data():
 
 
 N, M, kRow, kCol, eRow, eCol = Input_Data()
-visit = [[0]*N for _ in range(M)]
+visit = [[0]*M for _ in range(N)]
 
 
 def Solve():
