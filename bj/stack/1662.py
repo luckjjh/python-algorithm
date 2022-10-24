@@ -1,3 +1,4 @@
+from curses.ascii import isdigit
 import sys
 from collections import deque
 
@@ -9,23 +10,23 @@ def Input_Data():
 
 
 cList = Input_Data()
+ans = 0
 
 
 def Solve():
+    global ans
     stack = deque()
     for cmd in cList:
-        if cmd == ')':
-            q = deque()
-            while stack and stack[-1] != '(':
-                q.appendleft(stack.pop())
-            stack.pop()
-            N = stack.pop()
-            for _ in range(int(N)):
-                for j in q:
-                    stack.append(j)
+        if cmd.isdigit():
+            ans += 1
+            temp = cmd
+        elif cmd == '(':
+            stack.append((temp, ans-1))
+            ans = 0
         else:
-            stack.append(cmd)
-    print(len(stack))
+            multi, preL = stack.pop()
+            ans = (int(multi)*ans)+preL
+    print(ans)
 
 
 Solve()
