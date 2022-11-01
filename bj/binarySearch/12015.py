@@ -10,7 +10,7 @@ def Input_Data():
 
 
 N, nums = Input_Data()
-memo = [0]
+memo = [-(sys.maxsize)]
 
 
 def Solve():
