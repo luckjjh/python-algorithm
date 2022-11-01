@@ -63,7 +63,7 @@ def Solve():
             abHigh = bisect.bisect_right(abList, abList[left])
             cdLow = bisect.bisect_left(cdList, cdList[right])
             cdHigh = bisect.bisect_right(cdList, cdList[right])
-            cnt += (abHigh-abLow)*(cdHigh-cdLow)
+            cnt += (abHigh-abLow)*(cdHigh-cdLow)  # 같은 숫자들 경우의 수 만들어 줌
             left = abHigh
             right = cdLow-1
     print(cnt)
