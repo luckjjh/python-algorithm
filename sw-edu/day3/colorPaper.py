@@ -1,6 +1,6 @@
 import sys 
 from collections import deque
-def Input_Data(): 
+def Input_Data():
     readl = sys.stdin.readline 
     N = int(readl()) 
     info = [list(map(int, readl().split())) for _ in range(N)] 
@@ -14,6 +14,7 @@ for row,col in info:
   for i in range(10):
     for j in range(10):
       maps[row+i][col+j] = 1
+      
 def Solve(row,col):
 
   cnt = 0

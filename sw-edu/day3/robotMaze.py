@@ -26,22 +26,29 @@ for i in dir:
 def Solve():
   curRow,curCol = 0,0
   curDir = 0
+  check = 0
   cnt=0
   while True:
     nextRow,nextCol = curRow+dirArr[curDir][0],curCol+dirArr[curDir][1]
+    if check >4:
+      break
     if nextRow<0 or nextCol<0:
       curDir = (curDir+1)%4
+      check += 1
       continue
     if nextRow>=N or nextCol>=N:
       curDir = (curDir+1)%4
+      check += 1
       continue
     if maps[nextRow][nextCol]==1:
       curDir = (curDir+1)%4
+      check += 1
       continue
     if visit[nextRow][nextCol]:
       break
     visit[nextRow][nextCol] = 1
     cnt+=1
+    check = 0
     curRow=nextRow
     curCol=nextCol
   print(cnt)
