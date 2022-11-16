@@ -8,6 +8,7 @@ def Input_Data():
 
 sol = 0
 K, edges = Input_Data()
+edges = edges+edges[:3]
 
 def Solve():
   global lastW,lastH,temp
