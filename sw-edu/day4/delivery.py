@@ -27,6 +27,6 @@ def Solve():
     curCost = min(curCost,info[i][2])
     for j in range(info[i][0],info[i][1]):
       truck[j] -= curCost
-    cost +=curCost
+    cost += curCost
   print(cost)
 Solve()
