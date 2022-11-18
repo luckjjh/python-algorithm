@@ -11,25 +11,10 @@ sol = 0
 
 str_input = input_data()
 
-def checkIsValid(arr):
-  stack = deque()
-  for i in arr:
-    if i=="(":
-      stack.append("(")
-    elif i==")":
-      if not stack:
-        return False
-      if stack[-1]=="(":
-        stack.pop()
-  return True
-
 def Solve():
   strArr = list(str_input.rstrip())
   cnt=cntOpen=cntClose = 0
   ans = 0
-  if checkIsValid(strArr):
-    print(0)
-    return
   for i in range(len(strArr)):
     if strArr[i]=="(":
       cnt+=1
@@ -37,13 +22,14 @@ def Solve():
     else:
       cnt-=1
       cntClose+=1
-    if cnt==-1:
+    if cnt<0:
       ans = cntClose
       break
-    if cnt==1:
+    if cnt<=1:
       cntOpen=0
-  if cnt==2:
+  else:
     ans = cntOpen
+
   print(ans)
 
 
