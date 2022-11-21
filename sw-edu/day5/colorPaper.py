@@ -21,7 +21,8 @@ for i in range(102):
   for j in range(102):
     if maps[i][j]>0:
       maps[i][j]+=maps[i-1][j]
-
+for i in maps:
+  print(i)
 maxSize = -1
 
 def Solve():
