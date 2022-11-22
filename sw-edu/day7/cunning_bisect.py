@@ -18,7 +18,7 @@ def Solve():
   global sol
   for i in range(len(list_file)-1):
     curScore = list_file[i]
-    curMax = curScore*1.1
+    curMax = curScore/0.9
     right = bisect.bisect_right(list_file,curMax)
     sol+=(right-(i+1))
   print(sol)
