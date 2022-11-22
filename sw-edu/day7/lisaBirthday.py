@@ -25,7 +25,7 @@ def Solve():
       curNeed = mid * toMake - remain 
       # mid개 만큼 만드는 데 필요한 양에서 주방에 있는 양 빼서 현재 필요한 양 계산
       curMin = sys.maxsize
-      for j in range(curNeed//small):
+      for j in range(curNeed//small+2):
         k = math.ceil((curNeed - small * j)/big)
         # 재료가 남게 사야되므로 올림 연산
         if k<0:
