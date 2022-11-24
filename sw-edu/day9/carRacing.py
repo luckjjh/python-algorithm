@@ -14,16 +14,18 @@ def Input_Data():
 
 L, N, dist, time = Input_Data()
 
-curMin = 987654321
+curMin = sys.maxsize
 curMinArr = []
 
 
 def Solve():
   q = deque()
-  check = [987654321]*(N+2)
+  check = [sys.maxsize]*(N+2)
   path = [0]*(N+2)
   q.append((0,0))
   check[0] = 0
+  if sum(dist)<=L:
+    print(0)
   while q:
     curDist,curTime = q.popleft()
     if check[curDist]<curTime:
