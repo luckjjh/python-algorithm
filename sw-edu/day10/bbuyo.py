@@ -52,18 +52,28 @@ def Boom(r,c,color):
           continue
         map_puyo[nextRow][nextCol] = '.'
         q.append((nextRow,nextCol))
-    
-    for i in range(12,-1,-1):
-      for j in range(8):
-        if map_puyo[i][j].isalpha() and map_puyo[i+1][j]=='.':
-          ands
+    Down_Puyo()
+
+def Down_Puyo():
+    for c in range(1,7):
+        r_space, r_puyo = 12,-1
+        while 1:
+            while r_space>=1 and map_puyo[r_space][c] != '.': r_space-=1
+            if r_space == 0: break
+            if r_puyo == -1: r_puyo = r_space-1
+            while r_puyo >= 1 and map_puyo[r_puyo][c] == '.': r_puyo-=1
+            if r_puyo == 0: break
+            map_puyo[r_space][c] = map_puyo[r_puyo][c]
+            map_puyo[r_puyo][c] = '.'
+            r_space -= 1
 
 for _ in range(T):
     map_puyo = input_data()
     check = [[0]*14 for _ in range(8)]
+    combo = 0
     for i in range(14):
       for j in range(8):
         if not check[i][j] and map_puyo[i][j].isalpha():
           if Solve(i,j,map_puyo[i][j]):
               Boom(i,j,map_puyo[i][j])
-          
+              combo+=1

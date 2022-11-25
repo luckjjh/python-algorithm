@@ -25,13 +25,11 @@ def Flood_Fill_Count(chk, sr, sc):
             q.append((nr, nc))
             list_conn.append((nr,nc))
     return cnt_conn, list_conn
-   
-   
+
 def Flood_Fill_Erase(list_conn):
     for r,c in list_conn:
         map_puyo[r][c] = '.'
-   
-   
+
 def Find_Connection():
     cnt_erase = 0
     chk = [[0] * 8 for _ in range(14)]
@@ -72,10 +70,7 @@ def Solve():
 T = int(input())
 sol = []
 for _ in range(T):
-    # 입력받는 부분
     map_puyo = Input_Data()
-    # 여기서부터 작성
     sol.append(Solve())
-  
-# 출력하는 부분
+
 print(*sol, sep='\n')
