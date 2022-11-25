@@ -47,9 +47,12 @@ def Solve():
   if minH==maxH:
     print(0)
     return
-  while minH<=maxH:
+
+  high = maxH-minH
+  low = 0
+  while low<=high:
     curCnt = -1
-    curCost = (minH+maxH)//2
+    curCost = (low+high)//2
     visit = [[0]*(N+2) for _ in range(N+2)]
     for j in range(1,N+1):
       for k in range(1,N+1):
@@ -57,11 +60,9 @@ def Solve():
           temp = BFS(j,k,curCost)
           curCnt = max(curCnt,temp)
     if curCnt>=maxF:
-      maxH = curCost-1
+      high = curCost-1
       ans = curCost
     else:
-      minH = curCost+1
-      
-
+      low = curCost+1
   print(ans)
 Solve()
