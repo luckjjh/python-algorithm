@@ -13,17 +13,16 @@ minCnt = 987654321
 
 def Solve(level,curSize,cnt):
   global minCnt
-  if level==N:
+  if level>=N:
     minCnt = min(minCnt,cnt)
     return
   if minCnt<=cnt:
     return
-  
   if curSize>W[level]:
     Solve(level+1,curSize+W[level],cnt)
   else:
-    if curSize!=0:
-      Solve(level+1,curSize+curSize-1,cnt+1)
+    if curSize>1:
+      Solve(level,curSize+curSize-1,cnt+1)
     Solve(level+1,curSize,cnt+1)
 
 
