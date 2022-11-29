@@ -15,12 +15,13 @@ def DFS(level):
   if level==len(emptyArr):
     for i in sudoku:
       print(*i)
-    return
+    exit(0)
   curRow,curCol = emptyArr[level]
   for i in range(1,10):
     sudoku[curRow][curCol]=i
     if Check(curRow,curCol):
       DFS(level+1)
+    sudoku[curRow][curCol]=0
 
 def Check(row,col):
   checkDict = dict()
@@ -73,8 +74,8 @@ def Check(row,col):
           return False
         checkDict[curNum]+=1
   elif 3<=row<=5 and 3<=col<=5:
-    for i in range(3,5):
-      for j in range(3,5):
+    for i in range(3,6):
+      for j in range(3,6):
         curNum = sudoku[i][j]
         if curNum!=0 and checkDict[curNum]==1:
           return False
