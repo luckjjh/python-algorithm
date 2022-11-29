@@ -13,33 +13,54 @@ maxW = -1
 
 B, N, weight_ship, weight_passenger = input_data()
 # 배 수, 승객 수, 각 배 최대 수용 무게, 각 승객 무게
+pwArr = [0]*(N+1)
+canRide = [0]*B
 
-def DFS(slevel,plevel):
+def DFS(level,cnt,sumShip):
   global maxW
-  if plevel>=N:
-    if slevel<B-1:
-      maxW = max(maxW,sum(origin[slevel+1:B]))
+  if sumShip<=maxW:
     return
-  if slevel>=B:
+  if level==N:
+    maxW = sumShip
     return
 
-  if origin[slevel]-weight_passenger[plevel]>=0:
-    origin[slevel] = origin[slevel]-weight_passenger[plevel]
-    DFS(slevel,plevel+1)
-    origin[slevel] = origin[slevel]+weight_passenger[plevel]
-  else:
-    DFS(slevel+1,plevel)
+  for i in range(B):
+    if canRide[i]:
+      continue
+    last = Check(cnt,weight_ship[i])
+    if last==-1:
+      continue
+    canRide[i]=1
+    DFS(level+(last-cnt),last,sumShip-weight_ship[i])
+    canRide[i]=0
+
+
+def Check(cnt,p):
+  ans = -1
+  low = cnt
+  high = N
+  while low<=high:
+    mid = (high+low)//2
+    weight = pwArr[mid]-pwArr[cnt]
+    if weight>p:
+      high=mid-1
+    elif weight==p:
+      return mid
+    else:
+      low = mid+1
+      ans = mid
+  return ans
+
 
 def Solve():
-  global origin
   if sum(weight_passenger)>sum(weight_ship):
     print(-1)
     return
-  shipPerm = list(map(list,permutations(weight_ship,len(weight_ship))))
-  for i in shipPerm:
-    origin = i.copy()
-    DFS(0,0)
-  
+  for i in range(len(weight_passenger)):
+    pwArr[i+1] = pwArr[i]+weight_passenger[i]
+  # print(pwArr)
+  DFS(0,0,sum(weight_ship))
+
   print(maxW)
 
 
